@@ -3,8 +3,6 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var exphbs = require("express-handlebars");
 
-// var db = require("./models");
-
 var PORT = process.env.PORT || 8080;
 
 var app = express();
@@ -17,7 +15,7 @@ app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newscraper";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // ROUTES

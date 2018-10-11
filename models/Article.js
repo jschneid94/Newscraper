@@ -5,15 +5,15 @@ var Schema = mongoose.Schema;
 var ArticleSchema = new Schema({
     headline: {
         type: String,
-        required: true
+        // required: true
     },
     summary: {
         type: String,
-        require: true
+        // require: true
     },
     url: {
         type: String,
-        required: true
+        // required: true
     },
     comment: {
         type: Schema.Types.ObjectId,
