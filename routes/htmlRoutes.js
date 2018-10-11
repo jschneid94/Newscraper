@@ -33,6 +33,17 @@ module.exports = function(app) {
                   .first()
                   .text();
 
+                result.link = $(this)
+                  .children(".featured-image")
+                  .children("a")
+                  .attr("href");
+
+                result.imgUrl = $(this)
+                  .children(".featured-image")
+                  .children("a")
+                  .children("img")
+                  .attr("src");
+                  
                 db.Article.create(result)
                   .then(function(dbArticle) {
                       console.log(dbArticle);

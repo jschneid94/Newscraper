@@ -11,7 +11,11 @@ var ArticleSchema = new Schema({
         type: String,
         // require: true
     },
-    url: {
+    link: {
+        type: String,
+        // required: true
+    },
+    imgUrl: {
         type: String,
         // required: true
     },
