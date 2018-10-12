@@ -1,1 +1,11 @@
-<h1>This is the home page</h1>
+<div class="container">
+    {{#each article}}
+        <div>
+            <a href={{link}}>
+                <h2>{{headline}}</h2>
+                <img src={{imgUrl}}>
+            </a>
+            <p>{{summary}}</p>
+        </div>
+    {{/each}}
+</div>

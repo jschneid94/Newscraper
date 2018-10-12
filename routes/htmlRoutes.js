@@ -8,7 +8,10 @@ module.exports = function(app) {
         db.Article.find({})
           .then(function(dbArticle) {
             // If we were able to successfully find Articles, send them back to the client
-            res.render("home", dbArticle);
+            console.log(dbArticle);
+            res.render("home", {
+              article: dbArticle
+            });
           })
           .catch(function(err) {
             // If an error occurred, send it to the client
@@ -52,9 +55,9 @@ module.exports = function(app) {
                     return res.json(err);
                   });
             });
-            // res.send("Scrape Complete");
+            res.send("Scrape Complete");
         });
-        console.log("scrape complete!!!!!!!!!!")
+        // console.log("scrape complete!!!!!!!!!!")
     });
 
     app.get("/saved", function(req, res) {
