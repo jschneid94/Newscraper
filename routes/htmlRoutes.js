@@ -5,11 +5,11 @@ var db = require("../models");
 
 module.exports = function(app) {
     app.get("/", function(req, res) {
-        db.Article.find({})
+        db.Article.find({ "saved": false })
           .then(function(dbArticle) {
             // If we were able to successfully find Articles, send them back to the client
             console.log(dbArticle);
-            res.render("home", {
+            res.render("articles", {
               article: dbArticle
             });
           })
@@ -60,11 +60,45 @@ module.exports = function(app) {
                     return res.json(err);
                   });
             });
-            res.send("Scrape Complete");
+            res.redirect("/");
         });
     });
 
     app.get("/saved", function(req, res) {
-        res.render("saved")
+      db.Article.find({ "saved": true })
+      .then(function(dbArticle) {
+        // If we were able to successfully find Articles, send them back to the client
+        console.log(dbArticle);
+        res.render("articles", {
+          article: dbArticle,
+          saved: dbArticle.saved
+        });
+      })
+      .catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+    });
+
+    app.get("/save/:id", function(req, res) {
+      let articleId = req.params.id
+      db.Article.update({ "_id": articleId }, { "saved": true })
+      .then(function(dbArticle) {
+        res.redirect("/");
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+    });
+
+    app.get("/remove/:id", function(req, res) {
+      let articleId = req.params.id
+      db.Article.update({ "_id": articleId }, { "saved": false })
+      .then(function(dbArticle) {
+        res.redirect("/saved");
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
     });
 };

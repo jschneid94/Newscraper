@@ -5,27 +5,31 @@ var Schema = mongoose.Schema;
 var ArticleSchema = new Schema({
     headline: {
         type: String,
-        // required: true
+        required: true
     },
     author: {
         type: String,
-        // require: true
+        require: true
     },
     summary: {
         type: String,
-        // require: true
+        require: true
     },
     link: {
         type: String,
-        // required: true
+        required: true
     },
     imgUrl: {
         type: String,
-        // required: true
+        required: true
     },
     comment: {
         type: Schema.Types.ObjectId,
         ref: "Comment"
+    },
+    saved: {
+        type: Boolean,
+        default: false
     }
 });
 
