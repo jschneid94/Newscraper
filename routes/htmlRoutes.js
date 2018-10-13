@@ -9,7 +9,7 @@ module.exports = function(app) {
           .then(function(dbArticle) {
             // If we were able to successfully find Articles, send them back to the client
             console.log(dbArticle);
-            res.render("articles", {
+            res.render("articleList", {
               article: dbArticle
             });
           })
@@ -69,7 +69,7 @@ module.exports = function(app) {
       .then(function(dbArticle) {
         // If we were able to successfully find Articles, send them back to the client
         console.log(dbArticle);
-        res.render("articles", {
+        res.render("articleList", {
           article: dbArticle,
           saved: dbArticle.saved
         });
@@ -101,4 +101,32 @@ module.exports = function(app) {
         res.json(err);
       });
     });
+
+    app.get("/article/:id", function(req, res) {
+      let articleId = req.params.id;
+      db.Article.findOne({ "_id": articleId })
+      .then(function(dbArticle) {
+        res.render("articleIndiv", {
+          article: dbArticle
+        });
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+    });
+
+    app.get("/submit/:id", function(req, res) {
+      db.Comment.create(req.body)
+        .then(function(dbComment) {
+          return db.Article.findOneAndUpdate({ _id: req.params.id }, { comment: dbComment._id }, { new: true });
+        })
+        .then(function(dbArticle) {
+          res.render("articleIndiv", {
+            article: dbArticle
+          });
+        })
+        .catch(function(err) {
+          res.json(err);
+        });
+    })
 };

@@ -1,0 +1,31 @@
+<section class="fl w-60 pa2 avenir">
+    <article class="pa3 pa5-ns">
+        {{!-- <a href={{ link }}> --}}
+            <h1 class="f2">{{ article.headline }}</h1>
+            <img src={{ article.imgUrl }} class="w-100 f5 measure">
+            <p class="measure lh-copy">{{ article.author }}</p>
+            <p class="measure lh-copy">{{ article.summary }}</p>
+        {{!-- </a> --}}
+    </article>
+</section>
+<section class="fl w-40 pa2">
+    {{#each comment}}
+        <ul class="list pl0">
+            <li class="pa3 pa4-ns bb b--black-10">
+                <b class="db f3 mb1">{{ comment.title }}</b>
+                <span class="f5 db lh-copy measure">{{ comment.body }}</span>
+            </li>
+        </ul>
+    {{/each}}
+    <form class="pa4 black-80">
+        <div>
+            <h3>Leave a comment!</h3>
+            <label for="commentTitle" class="f6 b db mb2">Title</label>
+            <input id="commentTitle" name="title" class="mb2">
+            <label for="commentBody" class="f6 b db mb2">Message</label>
+            <textarea id="commentBody" name="body" class="db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2" aria-describedby="comment-desc"></textarea>
+            <a class="f6 link dim br3 ph3 pv2 mb2 dib white bg-near-black" href="/submit/{{ article._id }}">Comment</a>
+        </div>
+    </form>
+</section>
+

@@ -1,3 +1,4 @@
+/* ARTICLE LIST PAGES */
 .bt {
     border-top-style: solid;
     border-top-width: 1px;
@@ -146,4 +147,108 @@
     .f5-l {
         font-size: 1rem;
     }
+}
+
+/* INDIVIDUAL ARTICLE PAGE */
+.border-box {
+    box-sizing: border-box;
+}
+
+.ba {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.b--black-20 {
+    border-color: rgba(0, 0, 0, .2);
+}
+
+.br2 {
+    border-radius: .25rem;
+}
+
+.db {
+    display: block;
+}
+
+.normal {
+    font-weight: normal;
+}
+
+.b {
+    font-weight: bold;
+}
+
+.link {
+    text-decoration: none;
+    transition: color .15s ease-in;
+}
+
+.link:link, .link:visited {
+    transition: color .15s ease-in;
+}
+
+.link:hover {
+    transition: color .15s ease-in;
+}
+
+.link:active {
+    transition: color .15s ease-in;
+}
+
+.link:focus {
+    transition: color .15s ease-in;
+    outline: 1px dotted currentColor;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.black-80 {
+    color: rgba(0, 0, 0, .8);
+}
+
+.black-60 {
+    color: rgba(0, 0, 0, .6);
+}
+
+.hover-black:hover {
+    color: #000;
+}
+
+.hover-black:focus {
+    color: #000;
+}
+
+.hover-blue:hover {
+    color: #357edd;
+}
+
+.hover-blue:focus {
+    color: #357edd;
+}
+
+.pa2 {
+    padding: .5rem;
+}
+
+.pa4 {
+    padding: 2rem;
+}
+
+.mb2 {
+    margin-bottom: .5rem;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.f6 {
+    font-size: .875rem;
+}
+
+.measure {
+    max-width: 30em;
 }
