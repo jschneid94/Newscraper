@@ -52,7 +52,7 @@ module.exports = function(app) {
                   .children("img")
                   .attr("src");
                   
-                db.Article.create(result)
+                db.Article.insertMany(result)
                   .then(function(dbArticle) {
                       console.log(dbArticle);
                   })
