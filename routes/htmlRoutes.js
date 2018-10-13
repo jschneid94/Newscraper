@@ -105,6 +105,7 @@ module.exports = function(app) {
     app.get("/article/:id", function(req, res) {
       let articleId = req.params.id;
       db.Article.findOne({ "_id": articleId })
+      .populate("comment")
       .then(function(dbArticle) {
         res.render("articleIndiv", {
           article: dbArticle
@@ -115,18 +116,29 @@ module.exports = function(app) {
       });
     });
 
-    app.get("/submit/:id", function(req, res) {
+    app.post("/article/:id", function(req, res) {
       db.Comment.create(req.body)
         .then(function(dbComment) {
-          return db.Article.findOneAndUpdate({ _id: req.params.id }, { comment: dbComment._id }, { new: true });
+          return db.Article.findOneAndUpdate({ _id: req.params.id }, { $push: { comment: dbComment._id } }, { safe: true, upsert: true, new: true });
         })
-        .then(function(dbArticle) {
-          res.render("articleIndiv", {
-            article: dbArticle
-          });
+        .then(function() {
+          res.redirect("/article/" + req.params.id);
         })
         .catch(function(err) {
           res.json(err);
         });
-    })
+    });
+
+    app.delete("/article/:id/:commentId", function(req, res) {
+      db.findByIdandRemove(req.params.commentId)
+      .then(function(comment) {
+        return db.Article.findOneAndUpdate({_id: req.params.id}, { $pull: { comment: comment } });
+      })
+      .then(function() {
+        res.redirect("/article/" + req.params.id);
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+    });
 };
