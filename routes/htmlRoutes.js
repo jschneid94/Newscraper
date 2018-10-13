@@ -27,8 +27,13 @@ module.exports = function(app) {
                 var result = {};
                 result.headline = $(this)
                   .children(".post-header")
-                  .first()
-                  .first()
+                  .children(".post-title")
+                  .children("a")
+                  .text();
+
+                result.author = $(this)
+                  .children(".post-header")
+                  .children(".post-byline")
                   .text();
 
                 result.summary = $(this)
@@ -57,7 +62,6 @@ module.exports = function(app) {
             });
             res.send("Scrape Complete");
         });
-        // console.log("scrape complete!!!!!!!!!!")
     });
 
     app.get("/saved", function(req, res) {
