@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("#deleteComment").on("click", function(event) {
+    $(".deleteComment").on("click", function(event) {
         event.preventDefault();
         console.log("is this working?");
         let link = location.href + "/" + $(this).data("comment");
