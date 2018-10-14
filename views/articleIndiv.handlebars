@@ -12,7 +12,9 @@
     {{#each article.comment}}
         <ul class="list pl0">
             <li class="pa3 pa4-ns bb b--black-10">
-                <button class="fr" id="deleteComment" data-comment="{{this._id}}">X</button>
+                <div>
+                    <button class="fr" id="deleteComment" data-comment="{{ this._id }}">X</button>
+                </div>
                 <b class="db f3 mb1">{{ this.title }}</b>
                 <span class="f5 db lh-copy measure">{{ this.body }}</span>
             </li>

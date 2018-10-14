@@ -1,6 +1,7 @@
 $(document).ready(function(){
-    $("button").on("click", "#deleteComment", function(event) {
+    $("#deleteComment").on("click", function(event) {
         event.preventDefault();
+        console.log("is this working?");
         let link = location.href + "/" + $(this).data("comment");
         $.ajax({
             method:"DELETE",

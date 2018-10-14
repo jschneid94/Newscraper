@@ -130,9 +130,9 @@ module.exports = function(app) {
     });
 
     app.delete("/article/:id/:commentId", function(req, res) {
-      db.findByIdandRemove(req.params.commentId)
+      db.Comment.findByIdAndRemove(req.params.commentId)
       .then(function(comment) {
-        return db.Article.findOneAndUpdate({_id: req.params.id}, { $pull: { comment: comment } });
+        return db.Article.findOneAndUpdate({ "_id": req.params.id}, { $pull: { "comment": comment._id } });
       })
       .then(function() {
         res.redirect("/article/" + req.params.id);
